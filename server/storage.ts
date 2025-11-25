@@ -1,38 +1,53 @@
-import { type User, type InsertUser } from "@shared/schema";
-import { randomUUID } from "crypto";
-
-// modify the interface with any CRUD methods
-// you might need
+import { type InsertStudentScore, type DashboardData } from "@shared/schema";
+import { promises as fs } from "fs";
+import path from "path";
 
 export interface IStorage {
-  getUser(id: string): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  saveScore(score: InsertStudentScore): Promise<void>;
+  getDashboardData(): Promise<DashboardData>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<string, User>;
+const SCORES_FILE = path.join(process.cwd(), "scores.json");
 
-  constructor() {
-    this.users = new Map();
+export class FileStorage implements IStorage {
+  private async ensureScoresFile(): Promise<void> {
+    try {
+      await fs.access(SCORES_FILE);
+    } catch {
+      await fs.writeFile(SCORES_FILE, JSON.stringify({}));
+    }
   }
 
-  async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
+  private async readScores(): Promise<DashboardData> {
+    await this.ensureScoresFile();
+    const content = await fs.readFile(SCORES_FILE, "utf-8");
+    return JSON.parse(content);
   }
 
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
+  private async writeScores(data: DashboardData): Promise<void> {
+    await fs.writeFile(SCORES_FILE, JSON.stringify(data, null, 2));
   }
 
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+  async saveScore(score: InsertStudentScore): Promise<void> {
+    const scores = await this.readScores();
+    const key = `grade${score.grade}${score.chapter.replace(/\s+/g, "")}`;
+
+    if (!scores[key]) {
+      scores[key] = [];
+    }
+
+    scores[key].push({
+      student: score.studentId,
+      score: score.score,
+      timestamp: score.timestamp,
+    });
+
+    await this.writeScores(scores);
+  }
+
+  async getDashboardData(): Promise<DashboardData> {
+    return await this.readScores();
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new FileStorage();
