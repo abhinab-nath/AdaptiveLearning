@@ -1,0 +1,169 @@
+I want you to build a complete working MVP adaptive-learning website. Follow these instructions exactly and generate all code, files, folder structure, backend, and frontend.
+
+🔷 PROJECT GOAL
+
+Build a very simple GenAI-powered adaptive learning web app for Indian rural schools.
+Only an MVP — small, fast, and minimal.
+
+🔷 FEATURES TO IMPLEMENT (MUST-HAVE)
+1) Student Flow
+
+Create these screens:
+
+Screen 1 — Select Grade & Chapter
+
+Student chooses grade: 6, 7, or 8
+
+Student chooses one chapter (e.g., “Fractions”)
+
+Screen 2 — Download Content
+
+When chapter is selected:
+
+Download a small offline content bundle:
+
+Short text paragraph
+
+1 sample image
+
+1 sample audio file
+
+Save this data to IndexedDB for offline use
+
+Screen 3 — Lesson Screen
+
+Display the stored text
+
+Show the stored image
+
+Add a button to play the audio file
+
+Screen 4 — Practice Quiz
+
+Show 2–3 practice questions
+
+Store student answers offline in IndexedDB
+
+Screen 5 — Summary Screen
+
+Show:
+
+Correct answers
+
+Wrong answers
+
+Total score %
+
+🔷 2) Simple Adaptive Learning (AI Logic)
+
+Use Hugging Face Inference API to generate:
+
+If student gets a question wrong:
+
+A short remedial explanation
+
+A hint
+
+If student gets a question right:
+
+One slightly harder follow-up question
+
+Only this small logic is needed to show “adaptive learning.”
+
+🔷 3) Sync Feature (Minimal)
+
+Create a backend with Node.js + Express with one endpoint:
+
+POST /sync
+
+It should:
+
+Accept student score JSON
+
+Save to a simple local JSON file (scores.json)
+
+Return dashboard data like:
+
+{
+  "grade6Fractions": [
+    { "student": "Student 1", "score": 70 },
+    { "student": "Student 2", "score": 40 }
+  ]
+}
+
+FRONTEND REQUIREMENT:
+
+When internet is available:
+
+Automatically send the score to /sync
+
+Clear local progress after sync
+
+🔷 4) Teacher Dashboard
+
+Create a single HTML page:
+
+Grade 6 → Fractions
+Student 1: 70%
+Student 2: 40%
+
+
+Load data from /sync response.
+
+🔷 TECH REQUIREMENTS
+
+Frontend: HTML + CSS + Vanilla JS (or React if easier)
+
+Offline Storage: IndexedDB
+
+Backend: Node.js + Express
+
+AI: Hugging Face Inference API (text generation)
+
+Audio: any small sample file
+
+Image: any placeholder image
+
+Structure: Clean folder structure
+
+❌ WHAT NOT TO BUILD (IMPORTANT)
+
+Do NOT include:
+
+Full NCERT mapping
+
+Multi-language support
+
+Parent portal
+
+Teacher AI planner
+
+Peer learning
+
+Large content library
+
+Deep offline sync system
+
+Multiple grades/chapters
+
+Voice input or TTS
+
+All these are future scope, not part of the MVP.
+
+🔷 FINAL DELIVERABLES
+
+Generate:
+
+✓ Full folder structure
+✓ All files with complete code
+✓ Working backend
+✓ Working frontend
+✓ IndexedDB logic
+✓ Hugging Face API calls
+✓ Syncing implementation
+✓ Static teacher dashboard
+✓ Instructions to run the project in Replit
+
+Make sure the app runs locally without errors.
+
+✅ End of Prompt — Build the Complete MVP.
