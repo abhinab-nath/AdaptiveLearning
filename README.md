@@ -62,4 +62,3 @@ From root:
 ```bash
 npm run dev
 ```
- tell me what style you prefer.
