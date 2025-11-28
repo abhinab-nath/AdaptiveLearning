@@ -65,9 +65,9 @@ npm run dev
 
 ---
 
-#### 👨‍💻 Author: 
+### 👨‍💻 Author: 
 
-Abhinab Nath
+#### Abhinab Nath
 
 <a href="https://github.com/abhinab-nath/">
   <img src="https://img.shields.io/badge/GitHub-000000?style=for-the-badge&logo=github&logoColor=white"/>
@@ -76,7 +76,7 @@ Abhinab Nath
     <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
 </a>
 
-Yash Sarkar
+#### Yash Sarkar
 
 <a href="https://github.com/yashsarkar164">
   <img src="https://img.shields.io/badge/GitHub-000000?style=for-the-badge&logo=github&logoColor=white"/>
@@ -85,5 +85,6 @@ Yash Sarkar
     <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
 </a>
 
+---
 
 <img src="https://img.shields.io/badge/-MIT_License-black?style=for-the-badge&logo=bookstack&logoColor=white&color=019B8F" alt="MIT License" />
